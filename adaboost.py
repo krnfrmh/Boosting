@@ -13,3 +13,9 @@ class AdaBoost:
 
     N, D = X.shape
     W = np.ones(N) / N
+    
+    for m in range(self.M):
+      tree = DecisionTreeClassifier(max_depth=1)
+      tree.fit(X, Y, sample_weight=W)
+      P = tree.predict(X)
+      
