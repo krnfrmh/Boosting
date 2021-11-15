@@ -19,3 +19,6 @@ class AdaBoost:
       tree.fit(X, Y, sample_weight=W)
       P = tree.predict(X)
       
+      # Picking up incorrect predictions
+      err = W.dot(P != Y)
+      alpha = 0.5*(np.log(1 - err) - np.log(err))
