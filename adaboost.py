@@ -22,3 +22,8 @@ class AdaBoost:
       # Picking up incorrect predictions
       err = W.dot(P != Y)
       alpha = 0.5*(np.log(1 - err) - np.log(err))
+      
+      # vectorized form
+      W = W * np.exp(-alpha*Y*P)
+      # normalize so it sums to 1
+      W = W / W.sum() 
