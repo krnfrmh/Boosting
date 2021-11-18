@@ -27,3 +27,6 @@ class AdaBoost:
       W = W * np.exp(-alpha*Y*P)
       # normalize so it sums to 1
       W = W / W.sum() 
+      
+      self.models.append(tree)
+      self.alphas.append(alpha)
