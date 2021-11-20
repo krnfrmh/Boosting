@@ -30,3 +30,7 @@ class AdaBoost:
       
       self.models.append(tree)
       self.alphas.append(alpha)
+      
+    def predict(self, X):
+      N, _ = X.shape
+      FX = np.zeros(N)
