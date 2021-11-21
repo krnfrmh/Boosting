@@ -34,3 +34,6 @@ class AdaBoost:
     def predict(self, X):
       N, _ = X.shape
       FX = np.zeros(N)
+      for alpha, tree in zip(self.alphas, self.models):
+        FX += alpha*tree.predict(X)
+      return np.sign(FX), FX
