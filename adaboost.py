@@ -37,3 +37,11 @@ class AdaBoost:
       for alpha, tree in zip(self.alphas, self.models):
         FX += alpha*tree.predict(X)
       return np.sign(FX), FX
+
+    def score(self, X, Y):
+      # returning accuracy and exponential loss
+      P, FX = self.predict(X)
+      L = np.exp(-Y*FX).mean()
+      return np.mean(P == Y), L
+    
+    
