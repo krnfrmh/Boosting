@@ -44,4 +44,10 @@ class AdaBoost:
       L = np.exp(-Y*FX).mean()
       return np.mean(P == Y), L
     
+if __name__ == '__main__':
     
+  X, Y = get_data()
+  Y[Y == 0] = -1 # make the targets -1,+1
+  Ntrain = int(0.8*len(X))
+  Xtrain, Ytrain = X[:Ntrain], Y[:Ntrain]
+  Xtest, Ytest = X[Ntrain:], Y[Ntrain:]
