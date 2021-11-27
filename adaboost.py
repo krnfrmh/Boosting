@@ -51,3 +51,14 @@ if __name__ == '__main__':
   Ntrain = int(0.8*len(X))
   Xtrain, Ytrain = X[:Ntrain], Y[:Ntrain]
   Xtest, Ytest = X[Ntrain:], Y[Ntrain:]
+  
+  T = 100
+  train_errors = np.empty(T)
+  test_losses = np.empty(T)
+  test_errors = np.empty(T)
+  
+  for num_trees in range(T):
+    if num_trees == 0:
+      train_errors[num_trees] = None
+      test_errors[num_trees] = None
+      test_losses[num_trees] = None
