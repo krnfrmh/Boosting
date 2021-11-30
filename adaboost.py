@@ -31,18 +31,18 @@ class AdaBoost:
       self.models.append(tree)
       self.alphas.append(alpha)
       
-    def predict(self, X):
-      N, _ = X.shape
-      FX = np.zeros(N)
-      for alpha, tree in zip(self.alphas, self.models):
-        FX += alpha*tree.predict(X)
-      return np.sign(FX), FX
+  def predict(self, X):
+    N, _ = X.shape
+    FX = np.zeros(N)
+    for alpha, tree in zip(self.alphas, self.models):
+      FX += alpha*tree.predict(X)
+    return np.sign(FX), FX
 
-    def score(self, X, Y):
-      # returning accuracy and exponential loss
-      P, FX = self.predict(X)
-      L = np.exp(-Y*FX).mean()
-      return np.mean(P == Y), L
+  def score(self, X, Y):
+    # returning accuracy and exponential loss
+    P, FX = self.predict(X)
+    L = np.exp(-Y*FX).mean()
+    return np.mean(P == Y), L
     
 if __name__ == '__main__':
     
@@ -62,3 +62,9 @@ if __name__ == '__main__':
       train_errors[num_trees] = None
       test_errors[num_trees] = None
       test_losses[num_trees] = None
+
+    model = AdaBoost(num_trees)
+    model.fit(Xtrain, Ytrain)
+    acc, loss = model.score(Xtest, Ytest)
+    acc_train, _ = model.score(Xtrain, Ytrain)
+    
