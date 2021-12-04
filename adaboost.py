@@ -67,4 +67,8 @@ if __name__ == '__main__':
     model.fit(Xtrain, Ytrain)
     acc, loss = model.score(Xtest, Ytest)
     acc_train, _ = model.score(Xtrain, Ytrain)
+    # Storing train/test Error and Loss
+    train_errors[num_trees] = 1 - acc_train
+    test_errors[num_trees] = 1 - acc
+    test_losses[num_trees] = loss
     
